@@ -7,6 +7,8 @@ describe("Gameboard factory", () => {
   let testBoard;
   let testShip;
   const testArr = [11, 12, 13, 14, 15];
+  const attackPositionHit = 13;
+  const attackPositionMiss = 45;
 
   beforeEach(() => {
     testBoard = Gameboard();
@@ -19,8 +21,19 @@ describe("Gameboard factory", () => {
       expect(testBoard.getBoard()[coordinate]).toEqual({
         shipName: "Carrier",
         shipLength: 5,
-        isHit: false,
+        shipHit: null,
+        shipMiss: null,
       })
     );
+  });
+  test("accepts a ship hit", () => {
+    testBoard.placeShip(testShip, testArr);
+    testBoard.receiveAttack(attackPositionHit);
+    expect(testBoard.getBoard()[attackPositionHit].shipHit).toBe(true);
+  });
+  test("accepts a ship miss", () => {
+    testBoard.placeShip(testShip, testArr);
+    testBoard.receiveAttack(attackPositionMiss);
+    expect(testBoard.getBoard()[attackPositionMiss].shipHit).toBe(false);
   });
 });
