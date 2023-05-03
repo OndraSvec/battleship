@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { describe, test, expect } from "vitest";
-import Ship from "./ship";
-import Gameboard from "./gameboard";
-import Player from "./player";
+import Ship from "../modules/ship";
+import Gameboard from "../modules/gameboard";
+import Player from "../modules/player";
 
 describe("Player factory objects", () => {
   const opponentBoard = Gameboard();
