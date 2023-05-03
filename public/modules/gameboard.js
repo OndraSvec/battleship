@@ -1,12 +1,13 @@
 const Gameboard = () => {
   const board = [];
   for (let i = 0; i < 100; i += 1) {
-    board.push({ shipLength: 0, isHit: false });
+    board.push({ shipName: null, shipLength: null, isHit: false });
   }
   const getBoard = () => board;
 
   const placeShip = (ship, coordinates) => {
     coordinates.forEach((position) => {
+      board[position].shipName = ship.name;
       board[position].shipLength = ship.length;
     });
   };

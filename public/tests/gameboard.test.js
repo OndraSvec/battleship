@@ -17,6 +17,7 @@ describe("Gameboard factory", () => {
     testBoard.placeShip(testShip, testArr);
     testArr.forEach((coordinate) =>
       expect(testBoard.getBoard()[coordinate]).toEqual({
+        shipName: "Carrier",
         shipLength: 5,
         isHit: false,
       })
