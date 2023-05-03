@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { describe, test, expect, beforeEach } from "vitest";
 import Ship from "./ship";
 
@@ -12,7 +13,7 @@ describe("Ship factory objects", () => {
     expect(testShip.hits).toBe(1);
   });
   test("can be sunk", () => {
-    for (let i = 0; i < 5; i++) testShip.hit();
+    for (let i = 0; i < 5; i += 1) testShip.hit();
     testShip.isSunk();
     expect(testShip.sunk).toBe(true);
   });
