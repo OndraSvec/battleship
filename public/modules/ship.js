@@ -16,6 +16,11 @@ const Ship = (name) => ({
   hits: 0,
   sunk: false,
   coordinates: [],
+  updateCoordinates(arr) {
+    arr.forEach((element) => {
+      this.coordinates.push(element);
+    });
+  },
   hit() {
     this.hits += 1;
   },

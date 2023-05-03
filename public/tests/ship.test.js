@@ -19,7 +19,7 @@ describe("Ship factory objects", () => {
     expect(testShip.sunk).toBe(true);
   });
   test("receives coordinates", () => {
-    testCoordinates.forEach((position) => testShip.coordinates.push(position));
+    testShip.updateCoordinates(testCoordinates);
     expect(testShip.coordinates).toStrictEqual(testCoordinates);
   });
 });
