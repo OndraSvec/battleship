@@ -15,6 +15,7 @@ const Ship = (name) => ({
       : null,
   hits: 0,
   sunk: false,
+  coordinates: [],
   hit() {
     this.hits += 1;
   },

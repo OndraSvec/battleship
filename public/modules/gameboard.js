@@ -10,8 +10,8 @@ const Gameboard = () => {
   }
   const getBoard = () => board;
 
-  const placeShip = (ship, coordinates) => {
-    coordinates.forEach((position) => {
+  const placeShip = (ship, locationCoordinates) => {
+    locationCoordinates.forEach((position) => {
       board[position].shipName = ship.name;
       board[position].shipLength = ship.length;
     });
