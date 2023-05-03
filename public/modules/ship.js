@@ -1,5 +1,18 @@
-const Ship = (length) => ({
-  length,
+/* eslint-disable no-nested-ternary */
+const Ship = (name) => ({
+  name,
+  length:
+    name === "Carrier"
+      ? 5
+      : name === "Battleship"
+      ? 4
+      : name === "Cruiser"
+      ? 3
+      : name === "Submarine"
+      ? 3
+      : name === "Destroyer"
+      ? 2
+      : null,
   hits: 0,
   sunk: false,
   hit() {

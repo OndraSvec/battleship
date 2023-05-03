@@ -10,7 +10,7 @@ describe("Gameboard factory", () => {
 
   beforeEach(() => {
     testBoard = Gameboard();
-    testShip = Ship(5);
+    testShip = Ship("Carrier");
   });
 
   test("accepts ship placement", () => {

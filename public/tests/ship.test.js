@@ -6,7 +6,7 @@ describe("Ship factory objects", () => {
   let testShip;
 
   beforeEach(() => {
-    testShip = Ship(5);
+    testShip = Ship("Carrier");
   });
   test("accept hits", () => {
     testShip.hit();
