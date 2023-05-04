@@ -15,4 +15,7 @@ describe("Player factory objects", () => {
     playerOne.attack(shipPlacement[2]);
     expect(opponentBoard.getBoard()[shipPlacement[2]].shipHit).toBe(true);
   });
+  test("cannot attack the same position twice", () => {
+    expect(playerOne.attack(shipPlacement[2])).toBe(undefined);
+  });
 });
