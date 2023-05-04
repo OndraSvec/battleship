@@ -1,7 +1,5 @@
-import Gameboard from "./gameboard";
-
 const Player = (board) => {
-  const opponentBoard = board || Gameboard();
+  const opponentBoard = board;
   const alreadyHit = [];
   const attack = (position) => {
     if (alreadyHit.includes(position)) return;

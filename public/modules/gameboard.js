@@ -26,6 +26,7 @@ const Gameboard = () => {
       board[position].shipMiss = false;
     }
   };
+
   return {
     getBoard,
     placeShip,
