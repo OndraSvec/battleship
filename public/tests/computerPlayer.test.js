@@ -8,7 +8,7 @@ describe("ComputerPlayer factory objects", () => {
   const AIPlayer = ComputerPlayer(opponentBoard);
 
   test("are capable of attacking a random position", () => {
-    const attackPosition = AIPlayer.getPosition();
+    const attackPosition = AIPlayer.findCarrier();
     AIPlayer.attack(attackPosition);
     expect(
       opponentBoard.getBoard()[attackPosition].shipHit ||
