@@ -1,0 +1,54 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+}
+
+:root {
+  --cell-gray: #e4e4e7;
+}
+
+html {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+body {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#Gameboards {
+  width: 80%;
+  height: 40rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.Humanboard,
+.Computerboard {
+  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+
+.Humanboard > div,
+.Computerboard > div {
+  border: 1px solid black;
+}
+
+.Computerboard > div:hover {
+  cursor: pointer;
+  background-color: var(--cell-gray);
+}
