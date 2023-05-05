@@ -28,53 +28,78 @@ const GameController = (() => {
     const humanDestroyer = Ship("Destroyer");
     const compDestroyer = Ship("Destroyer");
 
-    const availablePositionsHumanBrd = [];
-    for (let i = 0; i < 10; i += 1) {
-      for (let j = 0; j < 10; j += 1) {
-        availablePositionsHumanBrd.push([i, j]);
-      }
-    }
+    const carrierLocs = [
+      [0, 1, 2, 3, 4],
+      [1, 2, 3, 4, 5],
+      [3, 4, 5, 6, 7],
+      [5, 6, 7, 8, 9],
+      [29, 39, 49, 59, 69],
+      [49, 59, 69, 79, 89],
+      [91, 92, 93, 94, 95],
+      [10, 20, 30, 40, 50],
+      [30, 40, 50, 60, 70],
+      [50, 60, 70, 80, 90],
+    ];
 
-    const availablePositionsCompBrd = [];
-    for (let i = 0; i < 10; i += 1) {
-      for (let j = 0; j < 10; j += 1) {
-        availablePositionsCompBrd.push([i, j]);
-      }
-    }
+    const battleshipLocs = [
+      [32, 42, 52, 62],
+      [32, 33, 34, 35],
+      [33, 34, 35, 36],
+      [34, 35, 36, 37],
+      [34, 44, 54, 64],
+      [35, 45, 55, 65],
+      [37, 47, 57, 67],
+      [62, 63, 64, 65],
+    ];
 
-    const findHorizontalPlacement = (board, shipLength) => {
-      let placementArr = [];
+    const cruiserLocs = [
+      [11, 12, 13],
+      [12, 13, 14],
+      [13, 14, 15],
+      [14, 15, 16],
+      [23, 24, 25],
+      [61, 71, 81],
+      [96, 97, 98],
+      [97, 98, 99],
+    ];
 
-      const startPosition = board.filter(
-        (coord) => coord[1] <= 9 - (shipLength - 1)
-      );
-      const randomPos = Math.floor(Math.random() * startPosition.length);
+    const submarineLocs = [
+      [17, 18, 19],
+      [31, 41, 51],
+      [48, 58, 68],
+      [58, 68, 78],
+      [68, 78, 88],
+      [73, 74, 75],
+      [85, 86, 87],
+    ];
 
-      for (let i = 0; i < 5; i += 1) {
-        placementArr.push(startPosition[randomPos]);
-      }
-      placementArr = placementArr.map(
-        (item, index) => (item = [item[0], item[1] + index])
-      );
-      return placementArr;
+    const destroyerLocs = [
+      [21, 22],
+      [26, 27],
+      [28, 38],
+      [43, 53],
+      [46, 56],
+      [72, 82],
+      [76, 77],
+      [83, 84],
+    ];
+
+    const randomLocs = (arr) => {
+      const randomIndex = Math.floor(Math.random() * arr.length);
+      return arr[randomIndex];
     };
 
-    const findVerticalPlacement = (board, shipLength) => {
-      let placementArr = [];
+    humanBoard.placeShip(humanCarrier, randomLocs(carrierLocs));
+    humanBoard.placeShip(humanBattleship, randomLocs(battleshipLocs));
+    humanBoard.placeShip(humanCruiser, randomLocs(cruiserLocs));
+    humanBoard.placeShip(humanSubmarine, randomLocs(submarineLocs));
+    humanBoard.placeShip(humanDestroyer, randomLocs(destroyerLocs));
 
-      const startPosition = board.filter(
-        (coord) => coord[0] <= 9 - (shipLength - 1)
-      );
-      const randomPos = Math.floor(Math.random() * startPosition.length);
-
-      for (let i = 0; i < shipLength; i += 1) {
-        placementArr.push(startPosition[randomPos]);
-      }
-      placementArr = placementArr.map(
-        (item, index) => (item = [item[0] + index, item[1]])
-      );
-      return placementArr;
-    };
+    compBoard.placeShip(compCarrier, randomLocs(carrierLocs));
+    compBoard.placeShip(compBattleship, randomLocs(battleshipLocs));
+    compBoard.placeShip(compCruiser, randomLocs(cruiserLocs));
+    compBoard.placeShip(compSubmarine, randomLocs(submarineLocs));
+    compBoard.placeShip(compDestroyer, randomLocs(destroyerLocs));
   };
 
   let activePlayer = humanPlayer;
