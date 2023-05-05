@@ -10,6 +10,7 @@
 
 :root {
   --cell-gray: #e4e4e7;
+  --cell-ship: #075985;
 }
 
 html {
@@ -46,6 +47,10 @@ body {
 .Humanboard > div,
 .Computerboard > div {
   border: 1px solid black;
+}
+
+.Humanboard > .placed-ship {
+  background-color: var(--cell-ship);
 }
 
 .Computerboard > div:hover {
