@@ -4,6 +4,7 @@ import Ship from "./ship";
 import Gameboard from "./gameboard";
 import Player from "./player";
 import ComputerPlayer from "./computerPlayer";
+import pubsub from "./pubsub";
 
 const GameController = (() => {
   let humanBoard;
@@ -100,6 +101,8 @@ const GameController = (() => {
     compBoard.placeShip(compCruiser, randomLocs(cruiserLocs));
     compBoard.placeShip(compSubmarine, randomLocs(submarineLocs));
     compBoard.placeShip(compDestroyer, randomLocs(destroyerLocs));
+
+    pubsub.publish("SHIPS PLACED", humanBoard.getBoard());
   };
 
   let activePlayer = humanPlayer;
