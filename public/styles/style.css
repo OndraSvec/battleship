@@ -12,6 +12,7 @@
   --cell-gray: #e4e4e7;
   --cell-ship: #075985;
   --cell-ship-comp: #e11d48;
+  --cell-ship-dark: #be123c;
 }
 
 html {
@@ -58,7 +59,12 @@ body {
   background-color: var(--cell-ship-comp);
 }
 
-.Computerboard > div:hover {
+.Computerboard > div:not(.placed-ship):hover {
   cursor: pointer;
   background-color: var(--cell-gray);
+}
+
+.Computerboard > .placed-ship:hover {
+  cursor: pointer;
+  background-color: var(--cell-ship-dark);
 }
