@@ -7,16 +7,13 @@ import ComputerPlayer from "./computerPlayer";
 import pubsub from "./pubsub";
 
 const GameController = (() => {
-  let humanBoard;
-  let compBoard;
-  let humanPlayer;
-  let compPlayer;
-
   const startGame = () => {
-    humanBoard = Gameboard();
-    compBoard = Gameboard();
-    humanPlayer = Player(compBoard);
-    compPlayer = ComputerPlayer(humanBoard);
+    const humanBoard = Gameboard();
+    const compBoard = Gameboard();
+    const humanPlayer = Player(compBoard);
+    const compPlayer = ComputerPlayer(humanBoard);
+
+    let activePlayer = humanPlayer;
 
     const humanCarrier = Ship("Carrier");
     const compCarrier = Ship("Carrier");
@@ -104,7 +101,24 @@ const GameController = (() => {
 
     pubsub.publish("HUMAN SHIPS PLACED", humanBoard.getBoard());
     pubsub.publish("COMPUTER SHIPS PLACED", compBoard.getBoard());
-    pubsub.subscribe("COMPUTER BOARD CELL CLICKED", humanPlayer.attack);
+
+    const switchPlayers = () => {
+      if (activePlayer === humanPlayer) activePlayer = compPlayer;
+      else activePlayer = humanPlayer;
+    };
+
+    const compPlayerTurn = () => {
+      compPlayer.attack(compPlayer.findCarrier());
+      switchPlayers();
+    };
+
+    const compBoardClicked = (position) => {
+      humanPlayer.attack(position);
+      switchPlayers();
+      compPlayerTurn();
+    };
+
+    pubsub.subscribe("COMPUTER BOARD CELL CLICKED", compBoardClicked);
 
     const findHitShip = (shipName) => {
       const compShips = [
@@ -114,9 +128,19 @@ const GameController = (() => {
         compSubmarine,
         compDestroyer,
       ];
-      const shipToHit = compShips.find(
-        (ship) => Object.values(ship)[0] === shipName
-      );
+      const humanShips = [
+        humanCarrier,
+        humanBattleship,
+        humanCruiser,
+        humanSubmarine,
+        humanDestroyer,
+      ];
+
+      const shipToHit =
+        activePlayer === humanPlayer
+          ? compShips.find((ship) => Object.values(ship)[0] === shipName)
+          : humanShips.find((ship) => Object.values(ship)[0] === shipName);
+
       shipToHit.hit();
       console.log(shipName);
       console.log(shipToHit);
@@ -124,16 +148,7 @@ const GameController = (() => {
     pubsub.subscribe("SHIP HIT", findHitShip);
   };
 
-  let activePlayer = humanPlayer;
-
-  const switchPlayers = () => {
-    if (activePlayer === humanPlayer) activePlayer = compPlayer;
-    else activePlayer = humanPlayer;
-  };
-
-  const getActivePlayer = () => activePlayer;
-
-  return { startGame, switchPlayers, getActivePlayer };
+  return { startGame };
 })();
 
 export default GameController;

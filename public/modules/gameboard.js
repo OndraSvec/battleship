@@ -19,6 +19,7 @@ const Gameboard = () => {
   const receiveAttack = (position) => {
     if (!board[position].shipName) {
       board[position].shipMiss = true;
+      console.log("Miss");
     } else {
       board[position].shipMiss = false;
       pubsub.publish("SHIP HIT", board[position].shipName);
