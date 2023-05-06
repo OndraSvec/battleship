@@ -8,8 +8,8 @@ import pubsub from "./pubsub";
 
 const GameController = (() => {
   const startGame = () => {
-    const humanBoard = Gameboard();
-    const compBoard = Gameboard();
+    const humanBoard = Gameboard("HUMAN");
+    const compBoard = Gameboard("COMPUTER");
     const humanPlayer = Player(compBoard);
     const compPlayer = ComputerPlayer(humanBoard);
 
@@ -120,7 +120,7 @@ const GameController = (() => {
 
     pubsub.subscribe("COMPUTER BOARD CELL CLICKED", compBoardClicked);
 
-    const findHitShip = (shipName) => {
+    const findHitShip = (obj) => {
       const compShips = [
         compCarrier,
         compBattleship,
@@ -136,6 +136,8 @@ const GameController = (() => {
         humanDestroyer,
       ];
 
+      const shipName = obj.name;
+
       const shipToHit =
         activePlayer === humanPlayer
           ? compShips.find((ship) => Object.values(ship)[0] === shipName)
@@ -145,7 +147,8 @@ const GameController = (() => {
       console.log(shipName);
       console.log(shipToHit);
     };
-    pubsub.subscribe("SHIP HIT", findHitShip);
+    pubsub.subscribe("COMPUTER BOARD SHIP HIT", findHitShip);
+    pubsub.subscribe("HUMAN BOARD SHIP HIT", findHitShip);
   };
 
   return { startGame };

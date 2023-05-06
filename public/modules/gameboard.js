@@ -1,6 +1,6 @@
 import pubsub from "./pubsub";
 
-const Gameboard = () => {
+const Gameboard = (name) => {
   const board = [];
   for (let i = 0; i < 100; i += 1) {
     board.push({
@@ -19,14 +19,18 @@ const Gameboard = () => {
   const receiveAttack = (position) => {
     if (!board[position].shipName) {
       board[position].shipMiss = true;
-      console.log("Miss");
+      pubsub.publish(`${name} BOARD SHIP MISS`, position);
     } else {
       board[position].shipMiss = false;
-      pubsub.publish("SHIP HIT", board[position].shipName);
+      pubsub.publish(`${name} BOARD SHIP HIT`, {
+        name: board[position].shipName,
+        location: position,
+      });
     }
   };
 
   return {
+    name,
     getBoard,
     placeShip,
     receiveAttack,

@@ -69,6 +69,63 @@ body {
   background-color: var(--cell-ship-dark);
 }
 
+.Computerboard > .board-cell.ship-miss:hover {
+  background-color: black;
+  cursor: not-allowed;
+}
+
+.Humanboard > .ship-hit {
+  position: relative;
+  background-color: white;
+}
+
+.Computerboard > .ship-hit {
+  position: relative;
+  background-color: white;
+}
+
+.cross {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: not-allowed;
+}
+.Computerboard .cross:before,
+.Computerboard .cross:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: " ";
+  height: 100%;
+  width: 10%;
+  background-color: var(--cell-ship-comp);
+}
+
+.Humanboard .cross:before,
+.Humanboard .cross:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: " ";
+  height: 100%;
+  width: 10%;
+  background-color: var(--cell-ship);
+}
+
+.cross:before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.cross:after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.ship-miss {
+  background-color: black;
+}
+
 @media screen and (max-width: 900px) {
   #Gameboards {
     flex-direction: column;

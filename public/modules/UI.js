@@ -44,7 +44,39 @@ const renderSecond = () => {
   secondBoard.addEventListener("click", alertCompCellClick);
 };
 
+const showCompBrdShipHit = (obj) => {
+  const position = obj.location;
+  const targetCell = document.getElementById(`comp-cell-${position}`);
+  targetCell.className = "board-cell ship-hit";
+  const cross = document.createElement("div");
+  cross.classList.add("cross");
+  targetCell.appendChild(cross);
+};
+
+const showHumanBrdShipHit = (obj) => {
+  const position = obj.location;
+  const targetCell = document.getElementById(`human-cell-${position}`);
+  targetCell.className = "board-cell ship-hit";
+  const cross = document.createElement("div");
+  cross.classList.add("cross");
+  targetCell.appendChild(cross);
+};
+
+const showCompBrdShipMiss = (position) => {
+  const targetCell = document.getElementById(`comp-cell-${position}`);
+  targetCell.className = "board-cell ship-miss";
+};
+
+const showHumanBrdShipMiss = (position) => {
+  const targetCell = document.getElementById(`human-cell-${position}`);
+  targetCell.className = "board-cell ship-miss";
+};
+
 pubsub.subscribe("HUMAN SHIPS PLACED", renderHumanShips);
 pubsub.subscribe("COMPUTER SHIPS PLACED", renderCompShips);
+pubsub.subscribe("COMPUTER BOARD SHIP HIT", showCompBrdShipHit);
+pubsub.subscribe("HUMAN BOARD SHIP HIT", showHumanBrdShipHit);
+pubsub.subscribe("COMPUTER BOARD SHIP MISS", showCompBrdShipMiss);
+pubsub.subscribe("HUMAN BOARD SHIP MISS", showHumanBrdShipMiss);
 
 export { renderFirst, renderSecond };
