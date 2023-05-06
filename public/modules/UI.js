@@ -33,8 +33,15 @@ const renderFirst = () => {
   renderBoard(firstBoard, "human");
 };
 
+const alertCompCellClick = (e) => {
+  const targetCell = e.target.closest("div");
+  const targetCellIndex = targetCell.id.split("-")[2];
+  pubsub.publish("COMPUTER BOARD CELL CLICKED", targetCellIndex);
+};
+
 const renderSecond = () => {
   renderBoard(secondBoard, "comp");
+  secondBoard.addEventListener("click", alertCompCellClick);
 };
 
 pubsub.subscribe("HUMAN SHIPS PLACED", renderHumanShips);

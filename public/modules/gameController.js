@@ -104,6 +104,24 @@ const GameController = (() => {
 
     pubsub.publish("HUMAN SHIPS PLACED", humanBoard.getBoard());
     pubsub.publish("COMPUTER SHIPS PLACED", compBoard.getBoard());
+    pubsub.subscribe("COMPUTER BOARD CELL CLICKED", humanPlayer.attack);
+
+    const findHitShip = (shipName) => {
+      const compShips = [
+        compCarrier,
+        compBattleship,
+        compCruiser,
+        compSubmarine,
+        compDestroyer,
+      ];
+      const shipToHit = compShips.find(
+        (ship) => Object.values(ship)[0] === shipName
+      );
+      shipToHit.hit();
+      console.log(shipName);
+      console.log(shipToHit);
+    };
+    pubsub.subscribe("SHIP HIT", findHitShip);
   };
 
   let activePlayer = humanPlayer;

@@ -15,14 +15,9 @@ const Ship = (name) => ({
       : null,
   hits: 0,
   sunk: false,
-  coordinates: [],
-  updateCoordinates(arr) {
-    arr.forEach((element) => {
-      this.coordinates.push(element);
-    });
-  },
   hit() {
     this.hits += 1;
+    this.isSunk();
   },
   isSunk() {
     if (this.length === this.hits) this.sunk = true;

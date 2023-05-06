@@ -1,3 +1,5 @@
+import pubsub from "./pubsub";
+
 const Gameboard = () => {
   const board = [];
   for (let i = 0; i < 100; i += 1) {
@@ -21,9 +23,11 @@ const Gameboard = () => {
     if (!board[position].shipName) {
       board[position].shipMiss = true;
       board[position].shipHit = false;
+      console.log("Miss");
     } else {
       board[position].shipHit = true;
       board[position].shipMiss = false;
+      pubsub.publish("SHIP HIT", board[position].shipName);
     }
   };
 
