@@ -11,6 +11,7 @@
 :root {
   --cell-gray: #e4e4e7;
   --cell-ship: #075985;
+  --cell-ship-comp: #e11d48;
 }
 
 html {
@@ -51,6 +52,10 @@ body {
 
 .Humanboard > .placed-ship {
   background-color: var(--cell-ship);
+}
+
+.Computerboard > .placed-ship {
+  background-color: var(--cell-ship-comp);
 }
 
 .Computerboard > div:hover {

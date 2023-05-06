@@ -15,8 +15,15 @@ const renderBoard = (parent, abbr) => {
 const renderHumanShips = (arr) => {
   arr.forEach((item, index) => {
     if (item.shipName) {
-      console.log(item.shipName, index);
       const targetCell = document.getElementById(`human-cell-${index}`);
+      targetCell.classList.add("placed-ship");
+    }
+  });
+};
+const renderCompShips = (arr) => {
+  arr.forEach((item, index) => {
+    if (item.shipName) {
+      const targetCell = document.getElementById(`comp-cell-${index}`);
       targetCell.classList.add("placed-ship");
     }
   });
@@ -30,6 +37,7 @@ const renderSecond = () => {
   renderBoard(secondBoard, "comp");
 };
 
-pubsub.subscribe("SHIPS PLACED", renderHumanShips);
+pubsub.subscribe("HUMAN SHIPS PLACED", renderHumanShips);
+pubsub.subscribe("COMPUTER SHIPS PLACED", renderCompShips);
 
 export { renderFirst, renderSecond };

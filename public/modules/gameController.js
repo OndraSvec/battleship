@@ -102,7 +102,8 @@ const GameController = (() => {
     compBoard.placeShip(compSubmarine, randomLocs(submarineLocs));
     compBoard.placeShip(compDestroyer, randomLocs(destroyerLocs));
 
-    pubsub.publish("SHIPS PLACED", humanBoard.getBoard());
+    pubsub.publish("HUMAN SHIPS PLACED", humanBoard.getBoard());
+    pubsub.publish("COMPUTER SHIPS PLACED", compBoard.getBoard());
   };
 
   let activePlayer = humanPlayer;
