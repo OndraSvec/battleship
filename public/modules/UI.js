@@ -36,6 +36,12 @@ const renderFirst = () => {
 const alertCompCellClick = (e) => {
   const targetCell = e.target.closest("div");
   const targetCellIndex = targetCell.id.split("-")[2];
+  if (
+    targetCell.classList.contains("ship-hit") ||
+    targetCell.classList.contains("ship-miss")
+  ) {
+    return;
+  }
   pubsub.publish("COMPUTER BOARD CELL CLICKED", targetCellIndex);
 };
 
