@@ -68,3 +68,10 @@ body {
   cursor: pointer;
   background-color: var(--cell-ship-dark);
 }
+
+@media screen and (max-width: 900px) {
+  #Gameboards {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
