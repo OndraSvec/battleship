@@ -107,8 +107,36 @@ const GameController = (() => {
       else activePlayer = humanPlayer;
     };
 
+    let huntMode = true;
+    let targetMode = false;
+
+    const setHuntMode = () => {
+      huntMode = true;
+      targetMode = false;
+      console.log("huntMode");
+    };
+
+    const setTargetMode = () => {
+      huntMode = false;
+      targetMode = true;
+      console.log("targetMode");
+    };
+
+    const getHitIndex = (obj) => {
+      const position = obj.location;
+      return position;
+    };
+
+    pubsub.subscribe("HUMAN BOARD SHIP HIT", setTargetMode);
+    pubsub.subscribe("HUMAN BOARD SHIP HIT", getHitIndex);
+    pubsub.subscribe("HUMAN BOARD SHIP MISS", setHuntMode);
+
     const compPlayerTurn = () => {
-      compPlayer.attack(compPlayer.findCarrier());
+      if (huntMode) {
+        compPlayer.findCarrier();
+        compPlayer.attack(compPlayer.getNextHit());
+      } else {
+      }
       switchPlayers();
     };
 
