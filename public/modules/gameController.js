@@ -113,22 +113,14 @@ const GameController = (() => {
     const setHuntMode = () => {
       huntMode = true;
       targetMode = false;
-      console.log("huntMode");
     };
 
     const setTargetMode = () => {
       huntMode = false;
       targetMode = true;
-      console.log("targetMode");
-    };
-
-    const getHitIndex = (obj) => {
-      const position = obj.location;
-      return position;
     };
 
     pubsub.subscribe("HUMAN BOARD SHIP HIT", setTargetMode);
-    pubsub.subscribe("HUMAN BOARD SHIP HIT", getHitIndex);
     pubsub.subscribe("HUMAN BOARD SHIP MISS", setHuntMode);
 
     const compPlayerTurn = () => {
@@ -136,6 +128,7 @@ const GameController = (() => {
         compPlayer.findCarrier();
         compPlayer.attack(compPlayer.getNextHit());
       } else {
+        compPlayer.attack(compPlayer.getNextHit());
       }
       switchPlayers();
     };
@@ -172,8 +165,6 @@ const GameController = (() => {
           : humanShips.find((ship) => Object.values(ship)[0] === shipName);
 
       shipToHit.hit();
-      console.log(shipName);
-      console.log(shipToHit);
     };
     pubsub.subscribe("COMPUTER BOARD SHIP HIT", findHitShip);
     pubsub.subscribe("HUMAN BOARD SHIP HIT", findHitShip);
