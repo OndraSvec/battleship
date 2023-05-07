@@ -13,6 +13,7 @@
   --cell-ship: #075985;
   --cell-ship-comp: #e11d48;
   --cell-ship-dark: #be123c;
+  --cell-miss: #bae6fd;
 }
 
 html {
@@ -70,7 +71,7 @@ body {
 }
 
 .Computerboard > .board-cell.ship-miss:hover {
-  background-color: black;
+  background-color: var(--cell-miss);
   cursor: not-allowed;
 }
 
@@ -123,7 +124,7 @@ body {
 }
 
 .ship-miss {
-  background-color: black;
+  background-color: var(--cell-miss);
 }
 
 @media screen and (max-width: 900px) {
