@@ -15,16 +15,25 @@ const ComputerPlayer = (board) => {
   const getNextHit = () => nextHit[nextHit.length - 1];
 
   const attack = (position) => {
-    alreadyHit.push(position);
+    if (nextHit.length) {
+      const nextHitRemaining =
+        nextHit[Math.floor(Math.random() * nextHit.length)];
+      alreadyHit.push(nextHitRemaining);
+      opponentBoard.receiveAttack(nextHitRemaining);
+    } else {
+      alreadyHit.push(position);
+      opponentBoard.receiveAttack(position);
+    }
     nextHit = nextHit.filter((num) => !alreadyHit.includes(num));
     availablePositions = availablePositions.filter(
       (num) => !alreadyHit.includes(num)
     );
     carrierPosArr = carrierPosArr.filter((num) => !alreadyHit.includes(num));
-    opponentBoard.receiveAttack(position);
+    console.log(nextHit);
   };
 
   const findCarrier = () => {
+    if (nextHit.length) return;
     if (carrierPosArr.length) {
       const randomPos = Math.floor(Math.random() * carrierPosArr.length);
       const position = carrierPosArr[randomPos];
@@ -56,7 +65,7 @@ const ComputerPlayer = (board) => {
               Math.floor(Math.random() * availablePositions.length)
             ]
           );
-        } else nextHit.push(toHitNext);
+        } else targetArr.forEach((num) => nextHit.push(num));
         break;
       case position < 9:
         targetArr = [position - 1, position + 1, position + 10];
@@ -68,10 +77,10 @@ const ComputerPlayer = (board) => {
               Math.floor(Math.random() * availablePositions.length)
             ]
           );
-        } else nextHit.push(toHitNext);
+        } else targetArr.forEach((num) => nextHit.push(num));
         break;
       case position === 9:
-        targetArr = [8, 19];
+        targetArr = [position - 1, position + 10];
         targetArr = targetArr.filter((num) => !alreadyHit.includes(num));
         toHitNext = targetArr[randomInd(targetArr.length)];
         if (toHitNext === undefined) {
@@ -80,7 +89,7 @@ const ComputerPlayer = (board) => {
               Math.floor(Math.random() * availablePositions.length)
             ]
           );
-        } else nextHit.push(toHitNext);
+        } else targetArr.forEach((num) => nextHit.push(num));
         break;
       case position === 10:
       case position === 20:
@@ -99,7 +108,7 @@ const ComputerPlayer = (board) => {
               Math.floor(Math.random() * availablePositions.length)
             ]
           );
-        } else nextHit.push(toHitNext);
+        } else targetArr.forEach((num) => nextHit.push(num));
         break;
       case position === 90:
         targetArr = [position - 10, position + 1];
@@ -111,7 +120,7 @@ const ComputerPlayer = (board) => {
               Math.floor(Math.random() * availablePositions.length)
             ]
           );
-        } else nextHit.push(toHitNext);
+        } else targetArr.forEach((num) => nextHit.push(num));
         break;
       case position > 10 && position < 19:
       case position > 20 && position < 29:
@@ -130,7 +139,7 @@ const ComputerPlayer = (board) => {
               Math.floor(Math.random() * availablePositions.length)
             ]
           );
-        } else nextHit.push(toHitNext);
+        } else targetArr.forEach((num) => nextHit.push(num));
         break;
       case position === 19:
       case position === 29:
@@ -149,7 +158,7 @@ const ComputerPlayer = (board) => {
               Math.floor(Math.random() * availablePositions.length)
             ]
           );
-        } else nextHit.push(toHitNext);
+        } else targetArr.forEach((num) => nextHit.push(num));
         break;
       case position > 90 && position < 99:
         targetArr = [position - 1, position - 10, position + 1];
@@ -161,7 +170,7 @@ const ComputerPlayer = (board) => {
               Math.floor(Math.random() * availablePositions.length)
             ]
           );
-        } else nextHit.push(toHitNext);
+        } else targetArr.forEach((num) => nextHit.push(num));
         break;
       case position === 99:
         targetArr = [position - 1, position - 10];
@@ -173,7 +182,7 @@ const ComputerPlayer = (board) => {
               Math.floor(Math.random() * availablePositions.length)
             ]
           );
-        } else nextHit.push(toHitNext);
+        } else targetArr.forEach((num) => nextHit.push(num));
         break;
       default:
     }
