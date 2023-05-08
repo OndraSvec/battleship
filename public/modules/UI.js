@@ -82,6 +82,10 @@ const logShipSunk = (string) => {
   console.log(`${string} player ship has been sunk`);
 };
 
+const logAllShipsSunk = (string) => {
+  console.log(`All ${string} player's ships have been sunk`);
+};
+
 pubsub.subscribe("HUMAN SHIPS PLACED", renderHumanShips);
 pubsub.subscribe("COMPUTER SHIPS PLACED", renderCompShips);
 pubsub.subscribe("COMPUTER BOARD SHIP HIT", showCompBrdShipHit);
@@ -91,5 +95,8 @@ pubsub.subscribe("HUMAN BOARD SHIP MISS", showHumanBrdShipMiss);
 
 pubsub.subscribe("HUMAN PLAYER SHIP HAS BEEN SUNK", logShipSunk);
 pubsub.subscribe("COMPUTER PLAYER SHIP HAS BEEN SUNK", logShipSunk);
+
+pubsub.subscribe("HUMAN PLAYER'S SHIPS HAVE ALL BEEN SUNK", logAllShipsSunk);
+pubsub.subscribe("COMPUTER PLAYER'S SHIPS HAVE ALL BEEN SUNK", logAllShipsSunk);
 
 export { renderFirst, renderSecond };

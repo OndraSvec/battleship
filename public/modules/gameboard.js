@@ -29,6 +29,19 @@ const Gameboard = (name) => {
     }
   };
 
+  const reportAllShipsSunk = () => {
+    pubsub.publish(`${name} PLAYER'S SHIPS HAVE ALL BEEN SUNK`, `${name}`);
+  };
+
+  let shipsSunk = 0;
+
+  const updateShipsSunk = () => {
+    shipsSunk += 1;
+    if (shipsSunk === 5) reportAllShipsSunk();
+  };
+
+  pubsub.subscribe(`${name} PLAYER SHIP HAS BEEN SUNK`, updateShipsSunk);
+
   return {
     name,
     getBoard,
