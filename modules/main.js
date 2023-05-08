@@ -9,7 +9,7 @@ GameController.startGame();
 const startNewGame = () => {
   setTimeout(() => {
     window.location.reload();
-  }, 400);
+  }, 200);
 };
 
 pubsub.subscribe("GAME RESTART", startNewGame);
