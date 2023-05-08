@@ -4,6 +4,12 @@ import pubsub from "./pubsub";
 const firstBoard = document.querySelector(".Humanboard");
 const secondBoard = document.querySelector(".Computerboard");
 
+const removeChildren = (parent) => {
+  while (parent.firstChild) {
+    parent.removeChild(parent.lastChild);
+  }
+};
+
 const renderBoard = (parent, abbr) => {
   for (let i = 0; i < 100; i += 1) {
     const cell = document.createElement("div");
@@ -30,6 +36,7 @@ const renderCompShips = (arr) => {
 };
 
 const renderFirst = () => {
+  removeChildren(firstBoard);
   renderBoard(firstBoard, "human");
 };
 
@@ -46,6 +53,7 @@ const alertCompCellClick = (e) => {
 };
 
 const renderSecond = () => {
+  removeChildren(secondBoard);
   renderBoard(secondBoard, "comp");
   secondBoard.addEventListener("click", alertCompCellClick);
 };
@@ -92,6 +100,7 @@ const reportGameOver = (string) => {
 
 const restartGame = () => {
   gameOverDiv.classList.remove("active");
+  pubsub.publish("GAME RESTART");
 };
 
 const restartGameBtn = document.getElementById("restartGame");
