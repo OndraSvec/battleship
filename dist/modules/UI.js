@@ -26,14 +26,6 @@ const renderHumanShips = (arr) => {
     }
   });
 };
-const renderCompShips = (arr) => {
-  arr.forEach((item, index) => {
-    if (item.shipName) {
-      const targetCell = document.getElementById(`comp-cell-${index}`);
-      targetCell.classList.add("placed-ship");
-    }
-  });
-};
 
 const renderFirst = () => {
   removeChildren(firstBoard);
@@ -107,7 +99,6 @@ const restartGameBtn = document.getElementById("restartGame");
 restartGameBtn.addEventListener("click", restartGame);
 
 pubsub.subscribe("HUMAN SHIPS PLACED", renderHumanShips);
-pubsub.subscribe("COMPUTER SHIPS PLACED", renderCompShips);
 pubsub.subscribe("COMPUTER BOARD SHIP HIT", showCompBrdShipHit);
 pubsub.subscribe("HUMAN BOARD SHIP HIT", showHumanBrdShipHit);
 pubsub.subscribe("COMPUTER BOARD SHIP MISS", showCompBrdShipMiss);

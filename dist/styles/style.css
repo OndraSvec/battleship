@@ -110,18 +110,9 @@ body {
   background-color: var(--cell-ship);
 }
 
-.Computerboard > .placed-ship {
-  background-color: var(--cell-ship-comp);
-}
-
 .Computerboard > div:not(.placed-ship):hover {
   cursor: pointer;
   background-color: var(--cell-gray);
-}
-
-.Computerboard > .placed-ship:hover {
-  cursor: pointer;
-  background-color: var(--cell-ship-dark);
 }
 
 .Computerboard > .board-cell.ship-miss:hover {

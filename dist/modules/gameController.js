@@ -100,7 +100,6 @@ const GameController = (() => {
     compBoard.placeShip(compDestroyer, randomLocs(destroyerLocs));
 
     pubsub.publish("HUMAN SHIPS PLACED", humanBoard.getBoard());
-    pubsub.publish("COMPUTER SHIPS PLACED", compBoard.getBoard());
 
     const switchPlayers = () => {
       if (activePlayer === humanPlayer) activePlayer = compPlayer;
