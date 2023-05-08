@@ -29,7 +29,6 @@ const ComputerPlayer = (board) => {
       (num) => !alreadyHit.includes(num)
     );
     carrierPosArr = carrierPosArr.filter((num) => !alreadyHit.includes(num));
-    console.log(nextHit);
   };
 
   const findCarrier = () => {
