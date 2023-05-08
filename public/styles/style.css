@@ -54,7 +54,6 @@ body {
 }
 
 .gameOver.active {
-  transition: transform 0.4s ease-in-out;
   transform: translateY(0%);
 }
 

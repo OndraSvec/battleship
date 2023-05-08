@@ -80,9 +80,9 @@ const showHumanBrdShipMiss = (position) => {
 
 const gameOverDiv = document.querySelector(".gameOver");
 const announceWinnerDiv = document.getElementById("announceWinner");
-const restartGameBtn = document.getElementById("restartGame");
 
 const reportGameOver = (string) => {
+  gameOverDiv.setAttribute("style", "transition: transform 0.4s ease-in-out;");
   gameOverDiv.classList.add("active");
   if (string === "COMPUTER")
     announceWinnerDiv.textContent =
@@ -90,13 +90,19 @@ const reportGameOver = (string) => {
   else announceWinnerDiv.textContent = "Bend the knee! You have been crushed!";
 };
 
+const restartGame = () => {
+  gameOverDiv.classList.remove("active");
+};
+
+const restartGameBtn = document.getElementById("restartGame");
+restartGameBtn.addEventListener("click", restartGame);
+
 pubsub.subscribe("HUMAN SHIPS PLACED", renderHumanShips);
 pubsub.subscribe("COMPUTER SHIPS PLACED", renderCompShips);
 pubsub.subscribe("COMPUTER BOARD SHIP HIT", showCompBrdShipHit);
 pubsub.subscribe("HUMAN BOARD SHIP HIT", showHumanBrdShipHit);
 pubsub.subscribe("COMPUTER BOARD SHIP MISS", showCompBrdShipMiss);
 pubsub.subscribe("HUMAN BOARD SHIP MISS", showHumanBrdShipMiss);
-
 pubsub.subscribe("HUMAN PLAYER'S SHIPS HAVE ALL BEEN SUNK", reportGameOver);
 pubsub.subscribe("COMPUTER PLAYER'S SHIPS HAVE ALL BEEN SUNK", reportGameOver);
 
