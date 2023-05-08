@@ -15,16 +15,16 @@ const GameController = (() => {
 
     let activePlayer = humanPlayer;
 
-    const humanCarrier = Ship("Carrier");
-    const compCarrier = Ship("Carrier");
-    const humanBattleship = Ship("Battleship");
-    const compBattleship = Ship("Battleship");
-    const humanCruiser = Ship("Cruiser");
-    const compCruiser = Ship("Cruiser");
-    const humanSubmarine = Ship("Submarine");
-    const compSubmarine = Ship("Submarine");
-    const humanDestroyer = Ship("Destroyer");
-    const compDestroyer = Ship("Destroyer");
+    const humanCarrier = Ship("Carrier", "HUMAN");
+    const compCarrier = Ship("Carrier", "COMPUTER");
+    const humanBattleship = Ship("Battleship", "HUMAN");
+    const compBattleship = Ship("Battleship", "COMPUTER");
+    const humanCruiser = Ship("Cruiser", "HUMAN");
+    const compCruiser = Ship("Cruiser", "COMPUTER");
+    const humanSubmarine = Ship("Submarine", "HUMAN");
+    const compSubmarine = Ship("Submarine", "COMPUTER");
+    const humanDestroyer = Ship("Destroyer", "HUMAN");
+    const compDestroyer = Ship("Destroyer", "COMPUTER");
 
     const carrierLocs = [
       [0, 1, 2, 3, 4],

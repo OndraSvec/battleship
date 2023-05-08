@@ -1,5 +1,7 @@
+import pubsub from "./pubsub";
+
 /* eslint-disable no-nested-ternary */
-const Ship = (name) => ({
+const Ship = (name, player) => ({
   name,
   length:
     name === "Carrier"
@@ -20,8 +22,10 @@ const Ship = (name) => ({
     this.isSunk();
   },
   isSunk() {
-    if (this.length === this.hits) this.sunk = true;
-    else this.sunk = false;
+    if (this.length === this.hits) {
+      this.sunk = true;
+      pubsub.publish(`${player} PLAYER SHIP HAS BEEN SUNK`, `${player}`);
+    } else this.sunk = false;
   },
 });
 
