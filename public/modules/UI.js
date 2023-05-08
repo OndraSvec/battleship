@@ -78,7 +78,7 @@ const showHumanBrdShipMiss = (position) => {
   targetCell.className = "board-cell ship-miss";
 };
 
-const logAllShipsSunk = (string) => {
+const reportGameOver = (string) => {
   console.log(`All ${string} player's ships have been sunk`);
 };
 
@@ -89,7 +89,7 @@ pubsub.subscribe("HUMAN BOARD SHIP HIT", showHumanBrdShipHit);
 pubsub.subscribe("COMPUTER BOARD SHIP MISS", showCompBrdShipMiss);
 pubsub.subscribe("HUMAN BOARD SHIP MISS", showHumanBrdShipMiss);
 
-pubsub.subscribe("HUMAN PLAYER'S SHIPS HAVE ALL BEEN SUNK", logAllShipsSunk);
-pubsub.subscribe("COMPUTER PLAYER'S SHIPS HAVE ALL BEEN SUNK", logAllShipsSunk);
+pubsub.subscribe("HUMAN PLAYER'S SHIPS HAVE ALL BEEN SUNK", reportGameOver);
+pubsub.subscribe("COMPUTER PLAYER'S SHIPS HAVE ALL BEEN SUNK", reportGameOver);
 
 export { renderFirst, renderSecond };
