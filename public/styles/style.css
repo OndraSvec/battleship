@@ -14,6 +14,9 @@
   --cell-ship-comp: #e11d48;
   --cell-ship-dark: #be123c;
   --cell-miss: #bae6fd;
+  --gameOver-fs: clamp(1.5rem, 10vw, 10rem);
+  --announceWinner-fs: clamp(1rem, 5vw, 4rem);
+  --gameOver-gap: calc(var(--gameOver-fs) * 0.25);
 }
 
 html {
@@ -28,6 +31,34 @@ body {
   justify-content: center;
   align-items: center;
   font-family: "Press Start 2P", cursive;
+}
+
+.gameOver {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gameOver-gap);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-shadow: 0 1vmin 0 white;
+}
+
+.gameOver > #gameOver-heading {
+  color: var(--cell-ship-dark);
+  font-size: var(--gameOver-fs);
+  text-transform: uppercase;
+}
+
+.gameOver > #announceWinner {
+  color: var(--cell-ship);
+  font-size: var(--announceWinner-fs);
 }
 
 #Gameboards {
