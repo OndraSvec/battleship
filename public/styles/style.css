@@ -17,6 +17,7 @@
   --gameOver-fs: clamp(1.5rem, 10vw, 10rem);
   --announceWinner-fs: clamp(1rem, 5vw, 4rem);
   --gameOver-gap: calc(var(--gameOver-fs) * 0.25);
+  --restartGame-button-p: calc(var(--announceWinner-fs) * 0.125);
 }
 
 html {
@@ -48,6 +49,12 @@ body {
   align-items: center;
   text-align: center;
   text-shadow: 0 1vmin 0 white;
+  transform: translateY(-100%);
+}
+
+.gameOver.active {
+  transition: transform 0.2s ease-in-out;
+  transform: translateY(100%);
 }
 
 .gameOver > #gameOver-heading {
@@ -59,6 +66,21 @@ body {
 .gameOver > #announceWinner {
   color: var(--cell-ship);
   font-size: var(--announceWinner-fs);
+}
+
+.gameOver > #restartGame {
+  font-family: inherit;
+  font-size: var(--announceWinner-fs);
+  text-transform: uppercase;
+  padding: var(--restartGame-button-p);
+  background-color: black;
+  color: white;
+}
+
+.gameOver > #restartGame:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
 }
 
 #Gameboards {
