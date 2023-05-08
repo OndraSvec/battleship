@@ -84,10 +84,14 @@ const announceWinnerDiv = document.getElementById("announceWinner");
 const reportGameOver = (string) => {
   gameOverDiv.setAttribute("style", "transition: transform 0.4s ease-in-out;");
   gameOverDiv.classList.add("active");
-  if (string === "COMPUTER")
+  if (string === "COMPUTER") {
     announceWinnerDiv.textContent =
       "Rejoice! You have destroyed all your enemy's ships!";
-  else announceWinnerDiv.textContent = "Bend the knee! You have been crushed!";
+    announceWinnerDiv.setAttribute("style", "color: var(--cell-ship);");
+  } else {
+    announceWinnerDiv.textContent = "Bend the knee! You have been crushed!";
+    announceWinnerDiv.setAttribute("style", "color: var(--cell-ship-comp);");
+  }
 };
 
 const restartGame = () => {

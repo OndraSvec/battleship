@@ -14,9 +14,9 @@
   --cell-ship-comp: #e11d48;
   --cell-ship-dark: #be123c;
   --cell-miss: #bae6fd;
-  --gameOver-fs: clamp(1.5rem, 10vw, 10rem);
-  --announceWinner-fs: clamp(1rem, 5vw, 4rem);
-  --gameOver-gap: calc(var(--gameOver-fs) * 0.25);
+  --gameOver-fs: clamp(2rem, 10vw, 10rem);
+  --announceWinner-fs: clamp(1.5rem, 5vw, 4rem);
+  --gameOver-gap: calc(var(--gameOver-fs) * 0.5);
   --restartGame-button-p: calc(var(--announceWinner-fs) * 0.125);
 }
 
@@ -64,8 +64,8 @@ body {
 }
 
 .gameOver > #announceWinner {
-  color: var(--cell-ship);
   font-size: var(--announceWinner-fs);
+  line-height: calc(var(--announceWinner-fs) * 1.375);
 }
 
 .gameOver > #restartGame {
