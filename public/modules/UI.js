@@ -78,8 +78,16 @@ const showHumanBrdShipMiss = (position) => {
   targetCell.className = "board-cell ship-miss";
 };
 
+const gameOverDiv = document.querySelector(".gameOver");
+const announceWinnerDiv = document.getElementById("announceWinner");
+const restartGameBtn = document.getElementById("restartGame");
+
 const reportGameOver = (string) => {
-  console.log(`All ${string} player's ships have been sunk`);
+  gameOverDiv.classList.add("active");
+  if (string === "COMPUTER")
+    announceWinnerDiv.textContent =
+      "Rejoice! You have destroyed all your enemy's ships!";
+  else announceWinnerDiv.textContent = "Bend the knee! You have been crushed!";
 };
 
 pubsub.subscribe("HUMAN SHIPS PLACED", renderHumanShips);
