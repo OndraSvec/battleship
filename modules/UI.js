@@ -1,6 +1,7 @@
 import "../styles/style.css";
 import pubsub from "./pubsub";
 
+const gameboards = document.getElementById("Gameboards");
 const firstBoard = document.querySelector(".Humanboard");
 const secondBoard = document.querySelector(".Computerboard");
 
@@ -82,6 +83,8 @@ const gameOverDiv = document.querySelector(".gameOver");
 const announceWinnerDiv = document.getElementById("announceWinner");
 
 const reportGameOver = (string) => {
+  window.scrollTo({ top: 0, left: 0 });
+  document.body.setAttribute("style", "overflow-y: hidden;");
   gameOverDiv.setAttribute("style", "transition: transform 0.4s ease-in-out;");
   gameOverDiv.classList.add("active");
   if (string === "COMPUTER") {
